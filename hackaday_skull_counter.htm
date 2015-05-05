@@ -1,0 +1,57 @@
+<html>
+
+  <head>
+    
+    <style>
+    /* Some quick styling to somewhat match hackaday.io */
+      body {
+        background-color: black;
+        font-family: 'Letter Gothic Std', Letter-Gothic-Std, LetterGothicStd, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: #bd9f5c;
+      }
+      #skullcounter {
+        font-size: 16px;
+        position: relative;
+        display: inline-block;
+        height: 40px;
+        padding: 5px 20px;
+        border: 2px solid #bd9f5c;
+        border-radius: 25px;
+      }
+      #skullcounter img {
+        vertical-align: middle;
+        height: 100%;
+      }
+      #skullcounter span {
+        margin-left: 10px;
+        display: inline-block;
+        height: 100%;
+        font-weight: bold;
+      }
+    </style>
+    
+  </head>
+  
+  <body>
+    <h1> Skull counter for hackaday.io project "Hackaday API"</h1>
+    <div id="skullcounter">
+      <a href="https://hackaday.io/project/5602-hackaday-api"><img src="img/HAD_logo_gold.png" /></a>
+      <span></span>
+    </div>
+  
+  </body>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  
+  <script>
+  
+  // uses ajax to get skull count from a php file, could be triggered to update on a timer or on other events if desired
+  $(function() {    
+    $.get("return_skulls.php", function(result) {
+      $('#skullcounter span').html(result);
+    }); // end $.get(
+  }); // end $(
+
+  </script>
+  
+</html>
