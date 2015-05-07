@@ -10,7 +10,7 @@ $api_key = "";
 $project_id = "3287";
 
 // minimum time to wait between API requests (seconds)
-$cache_expiration = 120; 
+$cache_expiration = 30;
 
 // path to the cache file
 $cache_file = "cache.csv";
@@ -27,7 +27,7 @@ if((time()-$cache_expiration) > $cached_time) {
   $data = json_decode(file_get_contents("https://api.hackaday.io/v1/projects/".$project_id."?api_key=".$api_key),true);
   
   // return number of skulls, this will be fresh data
-  print($data['skulls']);
+  print($data['skulls']."<!-- fresh -->");
   
   // store time and skulls in the cache file
   file_put_contents($cache_file,time().",".$data['skulls']);
@@ -35,7 +35,7 @@ if((time()-$cache_expiration) > $cached_time) {
 } else { 
 
   // return cached value for number of skulls
-  print($cached_skulls);
+  print($cached_skulls."<!-- cached -->");
   
 }
 

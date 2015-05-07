@@ -59,13 +59,32 @@
   
   <script>
   
-  // uses ajax to get skull count from a php file, could be triggered to update on a timer or on other events if desired
-  $(function() {    
-    $.get("return_skulls.php", function(result) {
-      $('#skullcounter span').html(result);
-    }); // end $.get(
+  // immediately execute getskulls function
+  $(function() {
+  
+    getskulls();
+  
   }); // end $(
-
+  
+  // uses ajax to get skull count from a php file, repeats on a 10 second timer so it will update without page refresh
+  // the php file may use a cached or fresh value for skulls depending on the timing set in that file
+  
+  function getskulls() {
+  
+    $.get("skullcount/return_skulls.php", function(result) {
+    
+      $('#skullcounter span').html(result);
+      
+    }) // end $.get(
+    
+    .done(function() { // chain this to the end of the $.get( function to restart the getskulls function on a timer
+    
+      setTimeout(getskulls, 10000); // refresh value every 10 seconds
+      
+    }); // end .done(
+    
+  } // end getskulls()
+  
   </script>
   
 </html>
