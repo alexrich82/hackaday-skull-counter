@@ -10,7 +10,7 @@ $api_key = "";
 $project_id = "3287";
 
 // minimum time to wait between API requests (seconds)
-$cache_expiration = 30;
+$cache_expiration = 120; // maximum API calls per month will be 21600 with cache expiration set to 120s
 
 // path to the cache file
 $cache_file = "cache.csv";
